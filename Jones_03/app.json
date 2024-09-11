@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Jones_03",
-    "slug": "Jones_03",
+    "name": "MagicEightBallApp",
+    "slug": "MagicEightBallApp",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -11,6 +11,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
