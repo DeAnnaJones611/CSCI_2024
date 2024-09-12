@@ -51,7 +51,7 @@ export default function App() {
           setUserResponse("");
       }
 
-
+      //Sets User input
       function inputQuestionHandler(userQuestion){
           setUserQuestion(userQuestion);
       }
@@ -65,42 +65,52 @@ export default function App() {
 
           //Gets the response relating to the number
           const wordReponseResult  = responses[responseNum];
-          console.log("Radom" + wordReponseResult);
-          console.log("Questions: "+userQuestion)
 
           //Sets the response as the over All varible
           setUserResponse(wordReponseResult);
           setUserQuestion(userQuestion);
       }
+
+      //This changes the response if the user enters a question or not
+        //By default there is response 
+      let wisdomResponse = (
+        <Text style ={styles.result}>{userResponse}</Text>
+      );
+
+      //Checking if nothing has been entered into the text box
+        //Asking the user to input a question
+      if (userQuestion === ""){
+        wisdomResponse = (<Text style ={styles.result}>Please ask a question for insight. </Text>);
+      }
+
+  
+      
   return (
       <>
         <StatusBar/>
 
         <SafeAreaView style = {styles.container}>
 
-            <View style = {styles.imageContainer}>
-              <Image style = {styles.image} source = {require("./assets/Images/eightBall.png")}/>
-            </View> 
-
           <View style = {styles.titleContainer}>
-              <Text style = {styles.title}> Magic 8 Ball</Text>            
+              <Text style = {styles.title}> Magic 8 Ball</Text>
+
+          </View>
+          
+          <View style = {styles.centerItems}> 
+          <View style = {styles.imageContainer}>
+              <Image style = {styles.image} source = {require("./assets/Images/eightBall_new.png")}/>
           </View>
 
-
-
           <View style = {styles.inputContainer}>
-
-              <Text styles = { styles.text}></Text>
               <TextInput  
                   style = {styles.input}
                   placeholder='What troubles you? :)'
                   onChangeText = {inputQuestionHandler}
                   value = {userQuestion}
-              /> 
-  
+              />
           </View>
 
- 
+          </View>
 
           <Pressable
                 style = {styles.mainButtonContainer}
@@ -120,10 +130,6 @@ export default function App() {
       visible = {modalIsVisible}>
 
     <SafeAreaView style = {styles.modalContainer}>
-
-    <View style = {styles.imageContainer}>
-              <Image style = {styles.image} source = {require("./assets/Images/eightBall.png")}/>
-            </View> 
           <View style = {styles.titleContainer}>
                 <Text style = {styles.title}>Magic 8 Ball</Text>
           </View>
@@ -144,7 +150,7 @@ export default function App() {
               </View>
 
               <View style = {styles.resultContainer}>
-                  <Text style ={styles.result}>{userResponse}</Text>
+                  {wisdomResponse}
               </View>
           </View>
 
@@ -163,18 +169,9 @@ export default function App() {
           </Pressable>
 
 
-
-
     </SafeAreaView>
 
       </Modal>
-
-
-
-
-
-
-
 
         </SafeAreaView>
      </>
@@ -184,49 +181,48 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#D7BFDC',
+    backgroundColor: '#FFC594',
     paddingTop: 50,
+  
+   
   },
 
   titleContainer:{
-    margin: 10,
-    flex:2,
+      flex:2,
+    backgroundColor: "#F9E075",
     paddingHorizontal: 10,
-    padding:10,
-    backgroundColor: "#52B2BF",
-    borderWidth: 3,
-    bordeRadius: 7,	
-    borderColor: "#000080",
+    borderWidth: 5,
+    borderBlockColor: "#F9A603",
     justifyContent: "center",
-    alignContent: "center",
+    alignItems:"center",
+    padding:10,
+    margin:10,
+
   },
   title:{	
       fontSize: 60,
       fontWeight: "bold",
-      color: "#000080"
-      
 
   },
 
   imageContainer:{
-      margin:20,
-      padding: 10,
-      flex: 1,
+      flex: 2,
+      width: "60%",
+      height: "60%",
       justifyContent: "center",
-      alignItems: "center",
-      zIndex:-1,
-      
-
+      alignItems : "center",
+      margin: 30,
   },
   image: {
-   height: 120,
-		width: 160,
+    height: "100%",
+		width: "100%",
 		borderWidth: 3,
-    borderColor: "#89CFFF",
-    borderRadius: 100,
-    zIndex:-1,
-
-
+    resizeMode: "stretch",
+		borderColor:"#CC7722",
+    borderBlockColor: "#F9A603",
+    marginTop:10,
+    borderRadius:50,
+    borderStyle: "dashed",
   },
 
   inputContainer:{
@@ -234,82 +230,97 @@ const styles = StyleSheet.create({
       height: "80%",
       width: "80%",
       alignItems: "center",
-      justifyContent:"center",
-
-
+      padding:20,
   },
 
   input:{
    // alignItems: "",
+      margin:10,
       padding: 20,
       borderWidth:3,
       height: "80%",
       width: "90%",
-      borderColor: "#B100CD",
-      backgroundColor: '#DA8EE7',
-      color: '#000080'
-      
+      borderColor: "#F9E075",
+      backgroundColor: "#F9A603",
+      textAlign:"center",
+      fontWeight: "bold",
 
+  },
+
+  centerItems:{
+    flex: 8,
+    justifyContent: "center",
+    alignItems: "center",
 
   },
   mainButtonContainer:{
     flex:1,
-    borderColor: "#52B2BF",
+    backgroundColor: "#F9E075",
+    borderColor: "#F9A603",
     borderWidth: 3,
 
-    //backgroundColor: 
     margin: 20,
     justifyContent:"center",
     alignItems: "center",
+    fontStyle: "italic",
 
   },
 
+  resultButtonText:{
+    fontStyle: "italic",
+    fontSize: 20,
+
+  },
   resultButton:{
       height: 70,
       justifyContent: "center",
-      color: "#B100CD",
   },
 
 //Modal Styling 
 modalContainer:{
   flex:1,
-    backgroundColor: '#D7BFDC',
+    backgroundColor: '#FFC594',
     paddingTop: 50,
   },
 
   infomationConatiner:{
     flex: 4,
-    backgroundColor: '#FFFF00',
     margin: 10,
+    flexDirection: "row",
+    padding: 20,
 
   },
-
-
 
  headerContainer:{
     height: 40,
     alignItems: "left",
-    backgroundColor: '#DA8EE7',
-    borderColor: "#B100CD",
+    backgroundColor: '#FEE135',
+    borderColor: "#CC7722",
     bordeRadius: 7,
     borderWidth:2,
+    marginRight: 5,
+
+
  },
 
   header:{
-    color: '#000080',
     padding: 5,
     fontWeight: "bold",
     fontSize: 20,
+    textAlign: "center",
+    
   },
 
  resultContainer:{
   flex:2,
-  backgroundColor: '#89CFFF',
-    alignItems:"center",
+  alignItems:"center",
+  borderWidth: 5,
+  backgroundColor: "#EFB261",
+  borderBlockColor: "#F9A603",
+
  },
  
  result:{
-  color: '#000080',
     fontSize: 30,
     fontStyle: "italic",
 
